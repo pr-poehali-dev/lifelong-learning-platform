@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Icon from "@/components/ui/icon";
 
 const Index = () => {
@@ -79,7 +79,8 @@ const Index = () => {
       company: "Google",
       experience: "15 лет",
       students: 3400,
-      avatar: "АИ"
+      avatar: "АИ",
+      bio: "Разработал 5 продуктов с аудиторией 10М+ пользователей"
     },
     {
       name: "Елена Смирнова",
@@ -87,7 +88,8 @@ const Index = () => {
       company: "Сбер",
       experience: "10 лет",
       students: 2800,
-      avatar: "ЕС"
+      avatar: "ЕС",
+      bio: "Эксперт в NLP и компьютерном зрении, спикер конференций"
     },
     {
       name: "Игорь Морозов",
@@ -95,8 +97,60 @@ const Index = () => {
       company: "Тинькофф",
       experience: "12 лет",
       students: 2200,
-      avatar: "ИМ"
+      avatar: "ИМ",
+      bio: "Создал архитектуру высоконагруженных финтех-систем"
     }
+  ];
+
+  const features = [
+    {
+      icon: "BookOpen",
+      title: "Обновляемые курсы",
+      description: "Материалы обновляются ежемесячно под актуальные тренды индустрии"
+    },
+    {
+      icon: "Smartphone",
+      title: "Учитесь в любом месте",
+      description: "Мобильное приложение и адаптивная платформа для обучения на ходу"
+    },
+    {
+      icon: "TrendingUp",
+      title: "От теории к практике",
+      description: "Каждый курс включает реальные проекты для вашего портфолио"
+    },
+    {
+      icon: "Users",
+      title: "Активное сообщество",
+      description: "Форумы, чаты и вебинары для обмена опытом с коллегами"
+    }
+  ];
+
+  const blogPosts = [
+    {
+      title: "10 трендов в IT на 2025 год",
+      category: "Индустрия",
+      readTime: "5 мин",
+      date: "3 ноября 2024"
+    },
+    {
+      title: "Как собрать портфолио junior разработчика",
+      category: "Карьера",
+      readTime: "7 мин",
+      date: "1 ноября 2024"
+    },
+    {
+      title: "Что должен знать ML-инженер в 2025",
+      category: "Технологии",
+      readTime: "6 мин",
+      date: "30 октября 2024"
+    }
+  ];
+
+  const stats = [
+    { value: "97%", label: "Трудоустройства выпускников" },
+    { value: "24/7", label: "Поддержка менторов" },
+    { value: "150+", label: "Компаний-партнеров" },
+    { value: "92%", label: "Завершают курс" }
   ];
 
   return (
@@ -111,6 +165,7 @@ const Index = () => {
             <a href="#courses" className="text-sm font-medium hover:text-primary transition-colors">Курсы</a>
             <a href="#teachers" className="text-sm font-medium hover:text-primary transition-colors">Преподаватели</a>
             <a href="#reviews" className="text-sm font-medium hover:text-primary transition-colors">Отзывы</a>
+            <a href="#blog" className="text-sm font-medium hover:text-primary transition-colors">Блог</a>
             <Button variant="outline" size="sm">Войти</Button>
             <Button size="sm">Начать обучение</Button>
           </nav>
@@ -141,19 +196,13 @@ const Index = () => {
                 Смотреть демо
               </Button>
             </div>
-            <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <Icon name="Users" className="h-5 w-5 text-primary" />
-                <span>10 000+ студентов</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Icon name="Star" className="h-5 w-5 text-primary" />
-                <span>Рейтинг 4.8/5</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Icon name="Award" className="h-5 w-5 text-primary" />
-                <span>Сертификат после обучения</span>
-              </div>
+            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-primary mb-2">{stat.value}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -161,42 +210,30 @@ const Index = () => {
 
       <section className="py-20 bg-muted/30">
         <div className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="border-none shadow-lg hover:shadow-xl transition-shadow animate-slide-up">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Icon name="Clock" className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Гибкий график</CardTitle>
-                <CardDescription>
-                  Учитесь в удобное время, совмещая с работой или учебой. Доступ к материалам 24/7.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-none shadow-lg hover:shadow-xl transition-shadow animate-slide-up" style={{ animationDelay: '0.1s' }}>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-4">
-                  <Icon name="Briefcase" className="h-6 w-6 text-secondary" />
-                </div>
-                <CardTitle>Практические проекты</CardTitle>
-                <CardDescription>
-                  Реальные задачи из индустрии для вашего портфолио. Код-ревью от опытных разработчиков.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card className="border-none shadow-lg hover:shadow-xl transition-shadow animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                  <Icon name="Users" className="h-6 w-6 text-accent" />
-                </div>
-                <CardTitle>Сообщество</CardTitle>
-                <CardDescription>
-                  Общение с единомышленниками, нетворкинг и поддержка менторов на всех этапах обучения.
-                </CardDescription>
-              </CardHeader>
-            </Card>
+          <div className="text-center mb-12">
+            <Badge className="mb-4" variant="outline">
+              <Icon name="Zap" className="h-3 w-3 mr-1" />
+              Почему DevLearn
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Обучение, которое меняет жизнь</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Мы создали платформу для тех, кто ценит качество, гибкость и реальные результаты
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <Card key={index} className="border-none shadow-lg hover:shadow-xl transition-shadow animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardHeader>
+                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <Icon name={feature.icon} className="h-6 w-6 text-primary" />
+                  </div>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  <CardDescription>
+                    {feature.description}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -291,6 +328,7 @@ const Index = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
+                  <p className="text-sm text-muted-foreground mb-4 min-h-[40px]">{teacher.bio}</p>
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
                       <div className="text-muted-foreground">Опыт</div>
@@ -349,6 +387,49 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="blog" className="py-20 bg-muted/30">
+        <div className="container">
+          <div className="text-center mb-12">
+            <Badge className="mb-4" variant="outline">
+              <Icon name="Newspaper" className="h-3 w-3 mr-1" />
+              Блог и статьи
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Полезное для вашего роста</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Актуальные статьи о трендах, карьере и технологиях в IT-индустрии
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {blogPosts.map((post, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardHeader>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Badge variant="secondary" className="text-xs">{post.category}</Badge>
+                    <span className="text-xs text-muted-foreground flex items-center gap-1">
+                      <Icon name="Clock" className="h-3 w-3" />
+                      {post.readTime}
+                    </span>
+                  </div>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">{post.title}</CardTitle>
+                  <CardDescription className="flex items-center gap-1 mt-2">
+                    <Icon name="Calendar" className="h-3 w-3" />
+                    {post.date}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button variant="outline" size="lg">
+              Читать все статьи
+              <Icon name="ArrowRight" className="ml-2 h-4 w-4" />
+            </Button>
           </div>
         </div>
       </section>
