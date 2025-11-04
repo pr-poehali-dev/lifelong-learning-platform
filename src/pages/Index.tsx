@@ -153,6 +153,63 @@ const Index = () => {
     { value: "92%", label: "Завершают курс" }
   ];
 
+  const webinars = [
+    {
+      title: "Карьера в AI: с чего начать в 2025",
+      speaker: "Елена Смирнова",
+      company: "Сбер",
+      date: "12 ноября",
+      time: "19:00 МСК",
+      attendees: 234,
+      tags: ["AI", "Карьера"]
+    },
+    {
+      title: "Архитектура микросервисов: best practices",
+      speaker: "Игорь Морозов",
+      company: "Тинькофф",
+      date: "15 ноября",
+      time: "18:00 МСК",
+      attendees: 189,
+      tags: ["Backend", "Архитектура"]
+    },
+    {
+      title: "Web3 и будущее интернета",
+      speaker: "Александр Иванов",
+      company: "Google",
+      date: "18 ноября",
+      time: "20:00 МСК",
+      attendees: 312,
+      tags: ["Blockchain", "Web3"]
+    }
+  ];
+
+  const studentProjects = [
+    {
+      title: "AI-ассистент для медицины",
+      student: "Анна Соколова",
+      course: "Machine Learning",
+      description: "Система диагностики заболеваний на основе медицинских снимков",
+      tech: ["Python", "TensorFlow", "OpenCV"],
+      result: "Оффер в Яндекс"
+    },
+    {
+      title: "Платформа для фриланса",
+      student: "Дмитрий Петров",
+      course: "Fullstack JavaScript",
+      description: "Маркетплейс с реал-тайм чатом и системой безопасных платежей",
+      tech: ["React", "Node.js", "WebSocket"],
+      result: "Запуск стартапа"
+    },
+    {
+      title: "Аналитика продаж для e-commerce",
+      student: "Мария Ковалева",
+      course: "Python для анализа данных",
+      description: "Дашборд с прогнозированием спроса и рекомендациями",
+      tech: ["Python", "Pandas", "Plotly"],
+      result: "Junior Data Analyst"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -163,9 +220,9 @@ const Index = () => {
           </div>
           <nav className="hidden md:flex items-center gap-6">
             <a href="#courses" className="text-sm font-medium hover:text-primary transition-colors">Курсы</a>
+            <a href="#webinars" className="text-sm font-medium hover:text-primary transition-colors">Вебинары</a>
+            <a href="#projects" className="text-sm font-medium hover:text-primary transition-colors">Проекты</a>
             <a href="#teachers" className="text-sm font-medium hover:text-primary transition-colors">Преподаватели</a>
-            <a href="#reviews" className="text-sm font-medium hover:text-primary transition-colors">Отзывы</a>
-            <a href="#blog" className="text-sm font-medium hover:text-primary transition-colors">Блог</a>
             <Button variant="outline" size="sm">Войти</Button>
             <Button size="sm">Начать обучение</Button>
           </nav>
@@ -391,7 +448,129 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="blog" className="py-20 bg-muted/30">
+      <section id="webinars" className="py-20">
+        <div className="container">
+          <div className="text-center mb-12">
+            <Badge className="mb-4" variant="outline">
+              <Icon name="Video" className="h-3 w-3 mr-1" />
+              Вебинары и мастер-классы
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Учитесь у экспертов индустрии</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Бесплатные онлайн-сессии с обсуждением трендов, технологий и карьерных возможностей
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {webinars.map((webinar, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer group animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardHeader>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Calendar" className="h-4 w-4 text-primary" />
+                      <span className="text-sm font-semibold text-primary">{webinar.date}</span>
+                    </div>
+                    <Badge variant="secondary" className="text-xs">{webinar.time}</Badge>
+                  </div>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors mb-3">{webinar.title}</CardTitle>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Avatar className="h-8 w-8">
+                      <AvatarFallback className="text-xs bg-primary/10 text-primary">
+                        {webinar.speaker.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="text-sm">
+                      <div className="font-semibold">{webinar.speaker}</div>
+                      <div className="text-muted-foreground text-xs">{webinar.company}</div>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {webinar.tags.map(tag => (
+                      <Badge key={tag} variant="outline" className="text-xs">{tag}</Badge>
+                    ))}
+                  </div>
+                  <CardDescription className="flex items-center gap-1">
+                    <Icon name="Users" className="h-3 w-3" />
+                    {webinar.attendees} записалось
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Button className="w-full" variant="outline">
+                    <Icon name="Bell" className="mr-2 h-4 w-4" />
+                    Записаться
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Button variant="outline" size="lg">
+              Смотреть все вебинары
+              <Icon name="ArrowRight" className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" className="py-20 bg-muted/30">
+        <div className="container">
+          <div className="text-center mb-12">
+            <Badge className="mb-4" variant="outline">
+              <Icon name="Rocket" className="h-3 w-3 mr-1" />
+              Проекты студентов
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Реальные результаты обучения</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Практические проекты, которые помогли студентам начать карьеру в IT
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {studentProjects.map((project, index) => (
+              <Card key={index} className="hover:shadow-lg transition-shadow animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardHeader>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Avatar className="h-10 w-10">
+                      <AvatarFallback className="text-sm bg-secondary/10 text-secondary">
+                        {project.student.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <div className="font-semibold text-sm">{project.student}</div>
+                      <div className="text-xs text-muted-foreground">{project.course}</div>
+                    </div>
+                  </div>
+                  <CardTitle className="text-lg mb-2">{project.title}</CardTitle>
+                  <CardDescription className="text-sm mb-4">
+                    {project.description}
+                  </CardDescription>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {project.tech.map(tech => (
+                      <Badge key={tech} variant="secondary" className="text-xs">{tech}</Badge>
+                    ))}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center gap-2 text-sm">
+                    <Icon name="Trophy" className="h-4 w-4 text-primary" />
+                    <span className="font-semibold text-primary">{project.result}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg">
+              <Icon name="Briefcase" className="mr-2 h-4 w-4" />
+              Создать свой проект
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section id="blog" className="py-20">
         <div className="container">
           <div className="text-center mb-12">
             <Badge className="mb-4" variant="outline">
